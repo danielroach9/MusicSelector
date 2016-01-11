@@ -12,6 +12,21 @@ class Query:
         self.amount = amount
         self.found = 0
 
+    def __repr__(self):
+        return "Query(%s, %s, %s)" % (self.artist, self.amount, self.found)
+
+    def __eq__(self, other):
+        if isinstance(other, Query):
+            return self.artist == other.artist
+        else:
+            return False
+
+    def __hash__(self):
+        return hash(self.__repr__())
+
+    def __str__(self):
+        return "Looking for songs w/ " + self.artist + "\n" + self.found + "/" + self.desiredNum + " found\n"
+    
     def getArtist(self):
         return self.artist
 

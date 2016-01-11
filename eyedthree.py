@@ -1,6 +1,6 @@
 __author__ = 'dcr'
 
-from song import *
+from MusicFile import *
 import eyed3
 import os
 
@@ -107,11 +107,11 @@ def getSongs(songSet, querySet):
                         for search in querySet:
                             if search.done() is not True:
                                 if search.getArtist() in artist:
-                                    songSet.add(Song(search.getArtist(), data.tag.title, os.path.join(subdir, item)))
+                                    songSet.add(MusicFile(search.getArtist(), data.tag.title, data.tag.album, os.path.join(subdir, item)))
                                     search.incrementFound()
                                 elif search.getArtist() in title:
                                     if any(word in title for word in featureArray):
-                                        songSet.add(Song(search.getArtist(), data.tag.title, os.path.join(subdir, item)))
+                                        songSet.add(MusicFile(search.getArtist(), data.tag.title, data.tag.album, os.path.join(subdir, item)))
                                         search.incrementFound()
                                 else:
                                     continue
